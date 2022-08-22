@@ -6,20 +6,18 @@ import State from "./component/State";
 import ReactDOM from "react-dom";
 import Paginator from "react-hooks-paginator";
 function App() {
-  const pageLimit = 6;
 
   const { data, isLoading } = useSelector((state) => state.main);
   const [stateData, setstateData] = useState(data);
   const [generalData, setgeneralData] = useState(data);
-  const [offset, setOffset] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+
 
   useEffect(() => {
     if (isLoading === false) {
       setgeneralData(data.data);
-      setstateData(data.data.states.slice(offset, offset + pageLimit));
+      setstateData(data.data.states);
     }
-  }, [isLoading, data, offset]);
+  }, [isLoading, data]);
 
   return (
     <div>
@@ -78,7 +76,7 @@ function App() {
                 </div>
               </>
             ))}
-          {isLoading ? null : (
+          {/* {isLoading ? null : (
             <Paginator
               totalRecords={"36"}
               pageLimit={6}
@@ -87,7 +85,7 @@ function App() {
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
             />
-          )}
+          )} */}
         </div>
       )}{" "}
       <p className="text-sm ml-10 text-gray-500 mb-10 text-center"><a href="https://adejare.vercel.app" target="_blank" rel="noreferrer">Adejare</a></p>
